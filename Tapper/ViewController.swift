@@ -33,10 +33,42 @@ class ViewController: UIViewController {
             maxTaps = Int(howManyTapsTxt.text!)!
             currentTaps = 0
             
-            tapsLbl.text = "\(currentTaps) Taps"
+            updateTapsLabel()
         }
     }
 
+    @IBAction func tapsBtnPressed(sender: UIButton!) {
+        currentTaps++
+        updateTapsLabel()
+        
+        if gameover() {
+            restartGame()
+        }
+    }
+    
+    func restartGame() {
+        logoImg.hidden = false
+        howManyTapsTxt.hidden = false
+        howManyTapsTxt.text = ""
+        playBtn.hidden = false
+        
+        tapsBtn.hidden = true
+        tapsLbl.hidden = true
+        
+        
+    }
+    
+    func gameover() -> Bool {
+        if currentTaps >= maxTaps {
+            return true
+        } else {
+            return false
+        }
+    }
+ 
+    func updateTapsLabel() {
+        tapsLbl.text = "\(currentTaps) Taps"
+    }
     
 }
 
